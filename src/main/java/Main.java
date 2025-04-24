@@ -19,7 +19,7 @@ public class Main {
             isRandomGenerated = getMatrixInputKind();
         }
         if (isRandomGenerated) {
-            matrix = inputManager.getRandomMatrix(size);
+            matrix = InputManager.getRandomMatrix(size);
         } else {
             matrix = inputManager.getMatrix(size);
         }

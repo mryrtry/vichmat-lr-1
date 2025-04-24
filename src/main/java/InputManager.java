@@ -26,7 +26,7 @@ public class InputManager {
                 throw new IOException("Неожиданный конец ввода: ожидалось " + size + " строк");
             }
 
-            String[] tokens = line.trim().split("\\s+");
+            String[] tokens = line.trim().replace(',', '.').split("\\s+");
             if (tokens.length != size + 1) {
                 throw new IOException(
                         "Некорректное количество элементов в строке " + (i+1) +
@@ -70,7 +70,7 @@ public class InputManager {
             try {
                 String input = reader.readLine();
                 if (input == null) throw new IOException("Неожиданный конец ввода");
-
+                input = input.replace(',', '.');
                 BigDecimal accuracy = new BigDecimal(input.trim(), MC);
                 if (accuracy.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException();
                 return accuracy;
@@ -81,6 +81,7 @@ public class InputManager {
     }
 
     public BigDecimal[][] getMatrix(int size) {
+        System.out.println("Построчно введите матрицу вместе со свободными членами:");
         try {
             return _getMatrix(size);
         } catch (IOException e) {
